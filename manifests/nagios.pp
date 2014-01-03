@@ -1,7 +1,8 @@
 define sshd::nagios(
   $port = 'absent',
   $ensure = 'present',
-  $check_hostname = 'absent'
+  $check_hostname = 'absent',
+  $target_server_name = 'default'
 ) {
   $real_port = $port ? {
     'absent' => $name,
@@ -9,15 +10,17 @@ define sshd::nagios(
   }
   case $check_hostname {
     'absent': {
-      nagios::service{"ssh_port_${name}":
+      nagios::type::service{"ssh_port_${name}":
         ensure        => $ensure,
-        check_command => "check_ssh_port!${real_port}"
+        check_command => "check_ssh_port!${real_port}",
+        target_server_name => $target_server_name
       }
     }
     default: {
-      nagios::service{"ssh_port_host_${name}":
+      nagios::type::service{"ssh_port_host_${name}":
         ensure        => $ensure,
-        check_command => "check_ssh_port_host!${real_port}!${check_hostname}"
+        check_command => "check_ssh_port_host!${real_port}!${check_hostname}",
+        target_server_name => $target_server_name
       }
     }
   }

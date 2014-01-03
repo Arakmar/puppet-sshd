@@ -1,5 +1,6 @@
 class sshd(
   $manage_nagios = false,
+  $nagios_target_server_name = 'default',
   $nagios_check_ssh_hostname = 'absent',
   $ports = [ 22 ],
   $shared_ip = 'no',
@@ -52,7 +53,8 @@ class sshd(
 
   if $manage_nagios {
     sshd::nagios{$ports:
-      check_hostname => $nagios_check_ssh_hostname
+      check_hostname => $nagios_check_ssh_hostname,
+      target_server_name => $nagios_target_server_name
     }
   }
 
