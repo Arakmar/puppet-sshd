@@ -13,14 +13,14 @@ define sshd::nagios(
       nagios::type::service{"ssh_port_${name}":
         ensure        => $ensure,
         check_command => "check_ssh_port!${real_port}",
-        target_server_name => $target_server_name
+        server_name => $target_server_name
       }
     }
     default: {
       nagios::type::service{"ssh_port_host_${name}":
         ensure        => $ensure,
         check_command => "check_ssh_port_host!${real_port}!${check_hostname}",
-        target_server_name => $target_server_name
+        server_name => $target_server_name
       }
     }
   }
