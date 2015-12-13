@@ -1,3 +1,3 @@
-class sshd::client::debian inherits sshd::client::linux {
+class sshd::client::archlinux inherits sshd::client::linux {
 
 }
