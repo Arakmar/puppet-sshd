@@ -44,6 +44,7 @@ class sshd(
   }
 
   case $::operatingsystem {
+    archlinux: { include sshd::archlinux }
     gentoo: { include sshd::gentoo }
     redhat,centos: { include sshd::redhat }
     openbsd: { include sshd::openbsd }

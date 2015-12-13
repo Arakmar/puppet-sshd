@@ -8,6 +8,7 @@ class sshd::client(
 
   case $::operatingsystem {
     debian,ubuntu: { include sshd::client::debian }
+    archlinux: { include sshd::client::archlinux }
     default: {
       case $::kernel {
         linux: { include sshd::client::linux }
