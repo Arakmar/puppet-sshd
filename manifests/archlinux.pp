@@ -1,6 +1,6 @@
 class sshd::archlinux inherits sshd::linux {
   Package[openssh]{
-    name => 'openssh-server',
+    name => 'openssh',
   }
 
   Service[sshd]{
