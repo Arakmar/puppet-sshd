@@ -1,7 +1,7 @@
 class sshd::base {
 
   $sshd_config_content = $::lsbdistcodename ? {
-    ''      => template("sshd/sshd_config/${::operatingsystem}.erb"),
+    undef      => template("sshd/sshd_config/${::operatingsystem}.erb"),
     default => template ("sshd/sshd_config/${::operatingsystem}_${::lsbdistcodename}.erb"),
   }
 
